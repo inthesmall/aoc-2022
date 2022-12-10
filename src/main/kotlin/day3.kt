@@ -5,7 +5,7 @@ fun day3() {
     val upperScores = ('A'..'Z').withIndex().associateBy({ it.value.toString() }, { it.index + 27 })
     val totalScores = lowerScores.plus(upperScores)
 
-    val lines = File("src/main/resources/day3.csv").readLines()
+    val lines = File("src/main/resources/day3.txt").readLines()
     val duplicates = lines.map { findDuplicateItem(it) }
     val scores = duplicates.sumOf { totalScores[it] ?: 0 }
 

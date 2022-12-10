@@ -8,10 +8,12 @@ fun main() {
     println()
     day3()
     println()
+    day4()
+    println()
 }
 
 private fun day1() {
-    val input = File("src/main/resources/day1.csv").readText()
+    val input = File("src/main/resources/day1.txt").readText()
     val elfLines = input.split("\r\n\r\n")
     val elfValues = elfLines.map { lines ->
         lines

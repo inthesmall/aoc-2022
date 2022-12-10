@@ -26,7 +26,7 @@ fun day2() {
         "C Z" to 7
     )
 
-    val lines = File("src/main/resources/day2.csv").readLines()
+    val lines = File("src/main/resources/day2.txt").readLines()
 
     val scoreForRounds = lines.sumOf { roundPoints[it] ?: 0 }
     val scoreForMoves = lines.sumOf { movePoints[it.takeLast(1)] ?: 0}
