@@ -9,4 +9,6 @@ fun main() {
     println()
     day5()
     println()
+    day6()
+    println()
 }
