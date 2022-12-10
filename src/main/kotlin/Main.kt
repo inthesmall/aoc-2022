@@ -3,7 +3,11 @@ import java.lang.Integer.parseInt
 
 fun main() {
     day1()
+    println()
     day2()
+    println()
+    day3()
+    println()
 }
 
 private fun day1() {
