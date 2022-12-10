@@ -23,9 +23,5 @@ private fun day1() {
             .sumOf { line -> parseInt(line) }
     }
     println(elfValues.max())
-    val elfMap = elfValues.withIndex().associateBy({ it.index }, { it.value })
-    val sortedMap = elfMap.toSortedMap { i, j -> elfMap[j]!! - elfMap[i]!! }
-    val topThreeElves = sortedMap.keys.take(3)
-    val totalCals = topThreeElves.sumOf { elfMap[it] ?: 0 }
-    println(totalCals)
+    println(elfValues.sortedDescending().take(3).sum())
 }
