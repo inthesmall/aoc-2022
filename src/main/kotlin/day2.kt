@@ -1,5 +1,6 @@
 import java.io.File
 
+@Suppress("unused")
 fun day2() {
     val movePoints = mapOf("X" to 1, "Y" to 2, "Z" to 3)
     val roundPoints = mapOf(
@@ -34,7 +35,6 @@ fun day2() {
     val round2Score = lines.sumOf { round2Points[it] ?: 0 }
 
 
-    println("Day 2")
     println(scoreForMoves + scoreForRounds)
     println(round2Score)
 }

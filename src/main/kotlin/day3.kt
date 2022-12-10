@@ -1,5 +1,6 @@
 import java.io.File
 
+@Suppress("unused")
 fun day3() {
     val lowerScores = ('a'..'z').withIndex().associateBy({ it.value.toString() }, { it.index + 1 })
     val upperScores = ('A'..'Z').withIndex().associateBy({ it.value.toString() }, { it.index + 27 })
@@ -12,7 +13,6 @@ fun day3() {
     val part2 = lines.chunked(3).map { badgeFromGroup(it) }.sumOf { totalScores[it] ?: 0 }
 
 
-    println("Day 3")
     println(scores)
     println(part2)
 }

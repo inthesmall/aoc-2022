@@ -1,14 +1,11 @@
 fun main() {
-    day1()
-    println()
-    day2()
-    println()
-    day3()
-    println()
-    day4()
-    println()
-    day5()
-    println()
-    day6()
-    println()
+    for (day in 1..25) {
+        val clazz = Class.forName(::main.javaClass.module, "Day${day}Kt")
+        if (clazz != null) {
+            println("Day $day")
+            clazz.getMethod("day${day}")
+                .invoke(null)
+            println()
+        }
+    }
 }

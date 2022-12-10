@@ -1,5 +1,6 @@
 import java.io.File
 
+@Suppress("unused")
 fun day1() {
     val input = File("src/main/resources/day1.txt").readText()
     val elfLines = input.split("\r\n\r\n")

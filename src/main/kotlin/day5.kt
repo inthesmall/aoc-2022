@@ -3,6 +3,7 @@ import java.lang.Integer.parseInt
 
 typealias Stacks = List<ArrayDeque<Char>>
 
+@Suppress("unused")
 fun day5() {
     val lines = File("src/main/resources/day5.txt").readLines()
     val bottomRow = lines.indexOfLast { it.contains("[") }
@@ -21,7 +22,6 @@ fun day5() {
         performPartTwoMove(move, partTwoStacks)
     }
 
-    println("Day 5")
     println(generateAnswerFromStacks(partOneStacks))
     println(generateAnswerFromStacks(partTwoStacks))
 }

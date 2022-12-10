@@ -5,7 +5,7 @@ plugins {
     application
 }
 
-group = "me.ethanmills.co.uk"
+group = "uk.co.ethanmills.me"
 version = "1.0-SNAPSHOT"
 
 repositories {

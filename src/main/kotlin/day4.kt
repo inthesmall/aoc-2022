@@ -1,6 +1,7 @@
 import java.io.File
 import java.lang.Integer.parseInt
 
+@Suppress("unused")
 fun day4() {
     val lines = File("src/main/resources/day4.txt").readLines()
     val pairs = lines.map { toPair(it) }
@@ -8,7 +9,6 @@ fun day4() {
     val fullyContainedPairsCount = pairs.count { isFullyContained(it) }
     val overlappingPairsCount = pairs.count { overlaps(it) }
 
-    println("Day 4")
     println(fullyContainedPairsCount)
     println(overlappingPairsCount)
 }
