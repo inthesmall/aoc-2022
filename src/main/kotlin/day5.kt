@@ -10,21 +10,24 @@ fun day5() {
     val rows = lines.take(bottomRow + 1)
     val stackNumsRow = lines[bottomRow + 1]
     val stackNums = buildStackNums(stackNumsRow)
-    val stacks = buildStacks(rows, stackNums)
+    val partOneStacks = buildStacks(rows, stackNums)
+    val partTwoStacks = buildStacks(rows, stackNums)
 
-    val moveLines = lines.subList(firstMove, lines.count())
+    val moveLines = lines.slice(firstMove..lines.lastIndex)
     val moves = buildMoves(moveLines)
 
-//    for (move in moves) {
-//        repeat(move[0]) { _ -> performMove(move, stacks) }
-//    }
-
     for (move in moves) {
-        performNewMove(move, stacks)
+        repeat(move[0]) { _ -> performPartOneMove(move, partOneStacks) }
+        performPartTwoMove(move, partTwoStacks)
     }
 
     println("Day 5")
-    println(stacks.flatMap { it.takeLast(1) }.joinToString(""))
+    println(generateAnswerFromStacks(partOneStacks))
+    println(generateAnswerFromStacks(partTwoStacks))
+}
+
+private fun generateAnswerFromStacks(stacks: Stacks): String {
+    return stacks.flatMap { it.takeLast(1) }.joinToString("")
 }
 
 private fun buildStackNums(stackNumsRow: String) =
@@ -32,12 +35,9 @@ private fun buildStackNums(stackNumsRow: String) =
 
 private fun buildMoves(moveLines: List<String>): List<ArrayList<Int>> {
     val pattern = Regex("move (\\d+) from (\\d+) to (\\d+)")
-    val moves = moveLines.mapNotNull { line -> pattern.find(line) }
-        .map {
+    val moves = moveLines.mapNotNull { line -> pattern.find(line) }.map {
             arrayListOf(
-                parseInt(it.groups[1]?.value),
-                parseInt(it.groups[2]?.value),
-                parseInt(it.groups[3]?.value)
+                parseInt(it.groups[1]?.value), parseInt(it.groups[2]?.value), parseInt(it.groups[3]?.value)
             )
         }
     return moves
@@ -64,14 +64,14 @@ private fun stackNumToIndex(stackNum: Int): Int {
     return (4 * (stackNum - 1)) + 1
 }
 
-//private fun performMove(move: List<Int>, stacks: Stacks) {
-//    val origin = move[1] - 1
-//    val destination = move[2] - 1
-//    val item = stacks[origin].removeLast()
-//    stacks[destination].addLast(item)
-//}
+private fun performPartOneMove(move: List<Int>, stacks: Stacks) {
+    val origin = move[1] - 1
+    val destination = move[2] - 1
+    val item = stacks[origin].removeLast()
+    stacks[destination].addLast(item)
+}
 
-private fun performNewMove(move: List<Int>, stacks: Stacks) {
+private fun performPartTwoMove(move: List<Int>, stacks: Stacks) {
     val origin = move[1] - 1
     val destination = move[2] - 1
     val items = stacks[origin].takeLast(move[0])
