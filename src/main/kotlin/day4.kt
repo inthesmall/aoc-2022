@@ -14,7 +14,7 @@ fun day4() {
 }
 
 fun toPair(line: String): List<List<Int>> {
-    return line.split(",").map { it.split("-").map { num -> parseInt(num) } }
+    return line.split(",").map { it.split("-").map(::parseInt) }
 }
 
 fun isFullyContained(pairs: List<List<Int>>): Boolean {

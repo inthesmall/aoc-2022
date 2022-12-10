@@ -31,7 +31,7 @@ private fun generateAnswerFromStacks(stacks: Stacks): String {
 }
 
 private fun buildStackNums(stackNumsRow: String) =
-    stackNumsRow.split("\\s+".toRegex()).filterNot { it.isBlank() }.map { parseInt(it) }
+    stackNumsRow.split("\\s+".toRegex()).filter { it.isNotBlank() }.map { parseInt(it) }
 
 private fun buildMoves(moveLines: List<String>): List<ArrayList<Int>> {
     val pattern = Regex("move (\\d+) from (\\d+) to (\\d+)")
