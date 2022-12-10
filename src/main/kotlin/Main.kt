@@ -10,6 +10,8 @@ fun main() {
     println()
     day4()
     println()
+    day5()
+    println()
 }
 
 private fun day1() {
