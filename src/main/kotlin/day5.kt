@@ -1,11 +1,9 @@
-import java.io.File
 import java.lang.Integer.parseInt
 
 typealias Stacks = List<ArrayDeque<Char>>
 
-@Suppress("unused")
-fun day5() {
-    val lines = File("src/main/resources/day5.txt").readLines()
+fun day5(): Pair<String, String> {
+    val lines = getLines("day5.txt")
     val bottomRow = lines.indexOfLast { it.contains("[") }
     val firstMove = lines.indexOfFirst { it.contains("move") }
     val rows = lines.take(bottomRow + 1)
@@ -22,8 +20,7 @@ fun day5() {
         performPartTwoMove(move, partTwoStacks)
     }
 
-    println(generateAnswerFromStacks(partOneStacks))
-    println(generateAnswerFromStacks(partTwoStacks))
+    return Pair(generateAnswerFromStacks(partOneStacks), generateAnswerFromStacks(partTwoStacks))
 }
 
 private fun generateAnswerFromStacks(stacks: Stacks): String {
@@ -36,10 +33,10 @@ private fun buildStackNums(stackNumsRow: String) =
 private fun buildMoves(moveLines: List<String>): List<ArrayList<Int>> {
     val pattern = Regex("move (\\d+) from (\\d+) to (\\d+)")
     val moves = moveLines.mapNotNull { line -> pattern.find(line) }.map {
-            arrayListOf(
-                parseInt(it.groups[1]?.value), parseInt(it.groups[2]?.value), parseInt(it.groups[3]?.value)
-            )
-        }
+        arrayListOf(
+            parseInt(it.groups[1]?.value), parseInt(it.groups[2]?.value), parseInt(it.groups[3]?.value)
+        )
+    }
     return moves
 }
 

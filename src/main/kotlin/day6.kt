@@ -1,11 +1,7 @@
-import java.io.File
+fun day6(): Pair<Int, Int> {
+    val input = getResource("day6.txt").readText()
 
-@Suppress("unused")
-fun day6() {
-    val input = File("src/main/resources/day6.txt").readText()
-
-    println(firstUniqueRunOf(4, input))
-    println(firstUniqueRunOf(14, input))
+    return Pair(firstUniqueRunOf(4, input), firstUniqueRunOf(14, input))
 }
 
 private fun firstUniqueRunOf(size: Int, input: String) = input.windowed(size)

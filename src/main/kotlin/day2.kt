@@ -1,7 +1,4 @@
-import java.io.File
-
-@Suppress("unused")
-fun day2() {
+fun day2(): Pair<Int, Int> {
     val movePoints = mapOf("X" to 1, "Y" to 2, "Z" to 3)
     val roundPoints = mapOf(
         "A X" to 3,
@@ -27,14 +24,12 @@ fun day2() {
         "C Z" to 7
     )
 
-    val lines = File("src/main/resources/day2.txt").readLines()
+    val lines = getLines("day2.txt")
 
     val scoreForRounds = lines.sumOf { roundPoints[it] ?: 0 }
-    val scoreForMoves = lines.sumOf { movePoints[it.takeLast(1)] ?: 0}
+    val scoreForMoves = lines.sumOf { movePoints[it.takeLast(1)] ?: 0 }
 
     val round2Score = lines.sumOf { round2Points[it] ?: 0 }
 
-
-    println(scoreForMoves + scoreForRounds)
-    println(round2Score)
+    return Pair(scoreForMoves + scoreForRounds, round2Score)
 }

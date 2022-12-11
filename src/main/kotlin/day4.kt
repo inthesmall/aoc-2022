@@ -1,16 +1,13 @@
-import java.io.File
 import java.lang.Integer.parseInt
 
-@Suppress("unused")
-fun day4() {
-    val lines = File("src/main/resources/day4.txt").readLines()
+fun day4(): Pair<Int, Int> {
+    val lines = getLines("day4.txt")
     val pairs = lines.map { toPair(it) }
 
     val fullyContainedPairsCount = pairs.count { isFullyContained(it) }
     val overlappingPairsCount = pairs.count { overlaps(it) }
 
-    println(fullyContainedPairsCount)
-    println(overlappingPairsCount)
+    return Pair(fullyContainedPairsCount, overlappingPairsCount)
 }
 
 fun toPair(line: String): List<List<Int>> {
