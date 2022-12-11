@@ -39,16 +39,35 @@ private fun isVisible(grid: List<List<Int>>, row: Int, col: Int): Boolean {
 fun scenicScore(grid: List<List<Int>>, row: Int, col: Int): Int {
     val height = grid[row][col]
 
-    val up = grid.slice(0 until row).map { it[col] }.reversed().indexOfFirst { it >= height }
-    val up2 = if (up == -1) row else up + 1
-    val down = grid.slice(row + 1 until grid.size).map { it[col] }.indexOfFirst { it >= height }
-    val down2 = if (down == -1) (grid.size - (row + 1)) else down + 1
-    val left = grid[row].slice(0 until col).reversed().indexOfFirst { it >= height }
-    val left2 = if (left == -1) col else left + 1
-    val right = grid[row].slice(col + 1 until grid.size).indexOfFirst { it >= height }
-    val right2 = if (right == -1) (grid.size - (col+1)) else right + 1
+    val up = grid.slice(0 until row)
+        .map { it[col] }
+        .reversed()
+        .indexOfFirst { it >= height }
+        .takeIf { it >= 0 }
+        ?.plus(1)
+        ?: row
 
-    println("row: $row, col: $col, height: $height $up2 $down2 $left2 $right2")
+    val down = grid.slice(row + 1 until grid.size)
+        .map { it[col] }
+        .indexOfFirst { it >= height }
+        .takeIf { it >= 0 }
+        ?.plus(1)
+        ?: (grid.size - (row + 1))
 
-    return up2 * down2 * left2 * right2
+    val left = grid[row]
+        .slice(0 until col)
+        .reversed()
+        .indexOfFirst { it >= height }
+        .takeIf { it >= 0 }
+        ?.plus(1)
+        ?: col
+
+    val right = grid[row]
+        .slice(col + 1 until grid.size)
+        .indexOfFirst { it >= height }
+        .takeIf { it >= 0 }
+        ?.plus(1)
+        ?: (grid.size - (col + 1))
+
+    return up * down * left * right
 }
