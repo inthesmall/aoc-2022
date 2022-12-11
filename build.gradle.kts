@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "1.8.0-RC"
     application
 }
 
@@ -21,7 +21,10 @@ tasks.test {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "16"
+    kotlinOptions {
+        freeCompilerArgs = listOf("-Xuse-k2")
+        jvmTarget = "16"
+    }
 }
 
 application {
